@@ -1,0 +1,17 @@
+{
+    "name": "alvaro/todo-php",
+    "autoload": {
+        "psr-4": {
+            "Alvaro\\TodoPhp\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "Álvaro",
+            "email": "alvaro.peixoto@dcomp.ufs.br"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
