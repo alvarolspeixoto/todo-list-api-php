@@ -2,9 +2,6 @@
 
 namespace Alvaro\TodoPhp\config;
 
-use Alvaro\TodoPhp\controllers\UserController;
-use Alvaro\TodoPhp\controllers\TodoController;
-
 class Router
 {
 
