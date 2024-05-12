@@ -32,12 +32,39 @@ abstract class Controller
                 'isSuccess' => $isSuccess
             ];
 
-        http_response_code(200);
-        echo json_encode($response);
+            echo json_encode($response);
+            die;
+        }
     }
 
     public function show(int|null $id)
     {
+        try {
+            $data = (new $this->model)->findById($id);
+            $status = 'success';
+            $message = $data ? 'Usuário retornado com sucesso.'
+                : 'Usuário inexistente.';
+            $isSuccess = true;
+            
+            $responseCode = 200;
+        } catch (\Exception $e) {
+            $data = [];
+            $status = 'error';
+            $message = $e->getMessage();
+            $responseCode = 404;
+            $isSuccess = false;
+        } finally {
+            http_response_code($responseCode);
+            $response = [
+                'status' => $status,
+                'data' => $data,
+                'message' => $message,
+                'isSuccess' => $isSuccess
+            ];
+
+            echo json_encode($response);
+            die;
+        } 
     }
 
     public function create(array|null $data)
