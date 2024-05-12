@@ -36,4 +36,10 @@ class Connection
 
         return self::$conn;
     }
+
+    public static function getConnection() {
+        if ($conn = self::$conn) return $conn; 
+
+        return self::connect();
+    }
 }
