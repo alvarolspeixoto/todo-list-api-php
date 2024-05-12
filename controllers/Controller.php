@@ -1,17 +1,44 @@
 <?php
 
-abstract class Controller {
+namespace Alvaro\TodoPhp\controllers;
+
+abstract class Controller
+{
 
     protected $model;
 
-    protected function index() {}
+    public function index()
+    {
+        $data = (new $this->model)->findAll();
+        
+        $message = $data ? 'Usuários retornados com sucesso.'
+                         : 'Não há usuários cadastrados';
+        
 
-    protected function show(int|null $id) {}
+        $response = [
+            'status' => 'success',
+            'data' => $data,
+            'message' => $message,
+            'isSuccess' => true
+        ];
 
-    protected function create(array|null $data) {}
+        http_response_code(200);
+        echo json_encode($response);
+    }
 
-    protected function update(int|null $id, array|null $data) {}
+    public function show(int|null $id)
+    {
+    }
 
-    protected function delete(int|null $id) {}
+    public function create(array|null $data)
+    {
+    }
 
+    public function update(int|null $id, array|null $data)
+    {
+    }
+
+    public function delete(int|null $id)
+    {
+    }
 }
