@@ -22,6 +22,16 @@ abstract class Model {
 
     public function findById(int $id) {
 
+        $conn = Connection::getConnection();
+
+        $table = $this->table;
+        $pk = $this->primaryKey;
+        $stmt = $conn->prepare("SELECT * FROM $table
+                                WHERE $pk = :id");
+        $stmt->execute(['id' => $id]);
+        $result = $stmt->fetch();
+
+        return $result ? $result : [];
     }
 
     public function create(array $data) {
