@@ -50,8 +50,14 @@ class Router
         }
 
         $controllerNamespace = 'Alvaro\\TodoPhp\\controllers';
-        $controllerClass = $controllerNamespace . '\\' . $controller;
-        (new  $controllerClass)->$action($id);
+        $controllerInstance = new ($controllerNamespace . '\\' . $controller);
+
+        if ($action == 'create') {
+            $controllerInstance->$action($data);
+            die;
+        }
+
+        $controllerInstance->$action($id, $data);
     }
 
     public function getRoutes()
