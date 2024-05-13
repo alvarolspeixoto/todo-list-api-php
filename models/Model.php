@@ -2,7 +2,7 @@
 
 namespace Alvaro\TodoPhp\models;
 
-use Alvaro\TodoPhp\config\database\Connection;
+use Alvaro\TodoPhp\config\Connection;
 
 abstract class Model {
 
