@@ -2,6 +2,9 @@
 
 namespace Alvaro\TodoPhp\controllers;
 
+use Alvaro\TodoPhp\config\Connection;
+use Exception;
+
 abstract class Controller
 {
 
@@ -69,6 +72,23 @@ abstract class Controller
 
     public function create(array|null $data)
     {
+
+        $model = new $this->model;
+        Connection::beginTransaction();
+
+        try {
+            $model->create($data);
+            Connection::commit();
+            http_response_code(201);
+            echo json_encode([]);
+        } catch (\Exception $e) {
+            http_response_code(400);
+            echo json_encode([
+                'error' => $e->getMessage(),
+                'isSuccess' => false,
+            ]);
+        }
+        die;
     }
 
     public function update(int|null $id, array|null $data)
