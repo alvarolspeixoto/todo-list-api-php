@@ -81,8 +81,9 @@ abstract class Controller
             Connection::commit();
             http_response_code(201);
             echo json_encode([]);
-        } catch (\Exception $e) {
-            http_response_code(400);
+        } catch (Exception $e) {
+            $code = $e->getCode() ?? 400;
+            http_response_code($code);
             echo json_encode([
                 'error' => $e->getMessage(),
                 'isSuccess' => false,
