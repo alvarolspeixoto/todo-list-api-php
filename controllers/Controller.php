@@ -15,8 +15,8 @@ abstract class Controller
         try {
             $data = (new $this->model)->findAll();
             $status = 'success';
-            $message = $data ? 'Usuários retornados com sucesso.'
-                : 'Não há usuários cadastrados';
+            $message = $data ? 'Dados retornados com sucesso'
+                : 'Não há registros';
             $isSuccess = true;
             
             $responseCode = 200;
