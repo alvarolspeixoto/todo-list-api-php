@@ -18,6 +18,7 @@ class Todo extends Model {
         $this->fillable = [
             'title',
             'description',
+            // TODO: criar enum de status
             'status',
             'user_id',
         ];
